@@ -20,9 +20,9 @@ app.get('/', (req, res) => {
     res.status(200).send('Server up and running')
 })
 
-// setInterval(function() {
-//     console.log("Render ab nhi soyega");
-// }, 2*60*1000) 
+setInterval(function() {
+    console.log("Render ab nhi soyega");
+}, 2*60*1000) 
 
 app.use('/api', authentication, api)
 app.use('/admin', authentication, auth)
