@@ -12,8 +12,8 @@ dotenv.config()
 const app = express()
 
 app.use(cors({
-    origin:'*', //changed
-    credentials:true //changed
+    credentials: true,
+    origin: process.env.Frontend
 }))
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieparser())
@@ -23,9 +23,9 @@ app.get('/', (req, res) => {
     res.status(200).send('Server up and running')
 })
 
-setInterval(function() {
-    console.log("Render ab nhi soyega");
-}, 2*60*1000) 
+// setInterval(function() {
+//     console.log("Render ab nhi soyega");
+// }, 2*60*1000) 
 
 app.use('/api', authentication, api)
 app.use('/admin', authentication, auth)
