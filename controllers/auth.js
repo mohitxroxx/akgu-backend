@@ -31,7 +31,7 @@ exports.logout = (req, res, next) => {
     return res.cookie('auth', '', {
         httpOnly: true,
         maxAge: 0
-    }).status(300).send('Logged out successfully')
+    }).status(200).send('Logged out successfully')
 }
 
 exports.signup = async (req, res, next) => {
