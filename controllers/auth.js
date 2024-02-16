@@ -28,10 +28,8 @@ exports.login = async (req, res, next) => {
 }
 
 exports.logout = (req, res, next) => {
-    return res.cookie('auth', '', {
-        httpOnly: true,
-        maxAge: 0
-    }).status(200).send('Logged out successfully')
+    res.clearCookie('auth')
+    res.status(200).send("User Logged out and session ended")
 }
 
 exports.signup = async (req, res, next) => {
