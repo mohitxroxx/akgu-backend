@@ -7,7 +7,7 @@ const upload = require("../middlewares/multer")
 exports.getFaculty = async (req, res, next) => {
     try {
         const data = await faculty.find({})
-        return res.status(403).send(data)
+        return res.status(200).send(data)
     } catch (err) {
         next(err.message)
     }

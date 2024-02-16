@@ -19,12 +19,13 @@ exports.login = async (req, res, next) => {
                     secure: true,
                     sameSite: 'None',
                 })
-                return res.cookie('user', user.role , {
+                res.cookie('user', user.role , {
                     httpOnly: true,
                     maxAge: 2*24*60*60*1000,
                     secure: true,
                     sameSite: 'None',
-                }).send('logged in successfully')
+                })
+                return res.status(200).send('Logged in successfully')
             }
         }
         return res.status(500).send('wrong credentials')
