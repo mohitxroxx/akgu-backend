@@ -17,13 +17,13 @@ exports.login = async (req, res, next) => {
                     httpOnly: true,
                     maxAge: 2*24*60*60*1000,
                     secure: true,
-                    sameSite: 'None'
+                    sameSite: 'Lax'
                 })
                 return res.cookie('user', user.role , {
                     httpOnly: true,
                     maxAge: 2*24*60*60*1000,
                     secure: true, //changed
-                    sameSite: 'None' //changed
+                    sameSite: 'Lax' //changed
                 }).send('logged in successfully')
             }
         }
