@@ -18,14 +18,12 @@ exports.login = async (req, res, next) => {
                     maxAge: 2*24*60*60*1000,
                     secure: true,
                     sameSite: 'None',
-                    "Access-Control-Allow-Credentials":"true"
                 })
                 return res.cookie('user', user.role , {
                     httpOnly: true,
                     maxAge: 2*24*60*60*1000,
                     secure: true,
                     sameSite: 'None',
-                    "Access-Control-Allow-Credentials":"true"
                 }).send('logged in successfully')
             }
         }
