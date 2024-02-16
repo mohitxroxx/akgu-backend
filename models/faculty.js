@@ -17,7 +17,7 @@ const facultySchema = new mongoose.Schema({
     imageUrl: {
         type: String,
         unique: true,
-        sparse: true
+        sparse: true 
     },
 }, {timestamps: true});
 

@@ -18,4 +18,4 @@ const societySchema = new mongoose.Schema({
     }
 }, {timestamps: true})
 
-module.exports = mongoose.model('Society', societySchema)
+module.exports = mongoose.model('Society', societySchema) 

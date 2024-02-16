@@ -27,5 +27,5 @@ router.patch('/achievement', authorization('admin'), adminController.updateAchie
 router.delete('/achievement/:id', authorization('admin'), adminController.deleteAchievement)
 
 router.post('/upload', authorization('admin'), adminController.upload)
-
+ 
 module.exports = router

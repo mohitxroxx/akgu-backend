@@ -13,7 +13,13 @@ exports.login = async (req, res, next) => {
                     username: user.username,
                     role: user.role
                 }, process.env.JWT_SECRET, { expiresIn: '2d' })
-                return res.cookie('auth', token, {
+                res.cookie('auth', token, {
+                    httpOnly: true,
+                    maxAge: 2*24*60*60*1000,
+                    secure: true,
+                    sameSite: 'None'
+                })
+                return res.cookie('user', user.role , {
                     httpOnly: true,
                     maxAge: 2*24*60*60*1000,
                     secure: true, //changed
@@ -23,12 +29,13 @@ exports.login = async (req, res, next) => {
         }
         return res.status(500).send('wrong credentials')
     } catch (err) {
-        next(err)
+        next(err) 
     }
 }
 
 exports.logout = (req, res, next) => {
     res.clearCookie('auth')
+    res.clearCookie('user')
     res.status(200).send("User Logged out and session ended")
 }
 

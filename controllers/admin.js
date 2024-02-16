@@ -23,6 +23,7 @@ exports.postFaculty = async (req, res, next) => {
             return res.status(403).send("image already exists")
         await new faculty(data).save()
         return res.status(200).send("added successfully")
+        // console.log("running fine")
 
     } catch (err) {
         console.log(err)

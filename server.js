@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 // setInterval(function() {
 //     console.log("Render ab nhi soyega");
 // }, 2*60*1000) 
-
+ 
 app.use('/api', authentication, api)
 app.use('/admin', authentication, auth)
 

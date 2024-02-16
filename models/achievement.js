@@ -8,7 +8,7 @@ const achievementSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-    },
+    }, 
     imageUrl1: {
         type: String,
         unique: true,
