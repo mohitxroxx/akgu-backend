@@ -13,7 +13,7 @@ const app = express()
 
 app.use(cors({
     credentials: true,
-    origin: 'https://akgu-dashboard.vercel.app'
+    origin: 'https://akgu-frontend.vercel.app'
 }))
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieparser())

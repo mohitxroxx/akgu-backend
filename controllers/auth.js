@@ -18,12 +18,16 @@ exports.login = async (req, res, next) => {
                     maxAge: 2*24*60*60*1000,
                     secure: true,
                     sameSite: 'None',
+                    domain: 'https://akgu-frontend.vercel.app',
+                    path: '/'
                 })
                 res.cookie('user', user.role , {
                     httpOnly: true,
                     maxAge: 2*24*60*60*1000,
                     secure: true,
                     sameSite: 'None',
+                    domain: 'https://akgu-frontend.vercel.app',
+                    path: '/'
                 })
                 return res.status(200).send('Logged in successfully')
             }
