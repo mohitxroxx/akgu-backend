@@ -11,10 +11,7 @@ connectDB()
 dotenv.config()
 const app = express()
 
-app.use(cors({
-    credentials: true,
-    origin: 'https://akgu-frontend.vercel.app'
-}))
+app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieparser())
 app.use(express.json())
