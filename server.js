@@ -12,8 +12,8 @@ dotenv.config()
 const app = express()
 
 app.use(cors({
-    credentials: true,
-    origin: true
+    origin: '*',
+    credentials: true
 }))
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieparser())
