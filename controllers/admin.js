@@ -3,6 +3,7 @@ const society = require('../models/society')
 const achievement = require('../models/achievement')
 const cloudinary = require("../config/cloudinary")
 const upload = require("../middlewares/multer")
+const mongoose = require('mongoose');
 
 exports.getFaculty = async (req, res, next) => {
     try {
@@ -134,7 +135,7 @@ exports.deleteSociety = async (req, res, next) => {
     }
 }
 
-exports.getAchievement = async (req, res, next) => {
+exports.getAchievements = async (req, res, next) => {
     try {
         const data = await achievement.find({})
         return res.status(200).send(data)
@@ -143,13 +144,32 @@ exports.getAchievement = async (req, res, next) => {
     }
 }
 
+exports.getAchievement = async (req, res, next) => {
+    const _id = req.params.id;
+
+    try {
+        const objectId = mongoose.Types.ObjectId(_id);
+        const data = await achievement.findOne({ _id: objectId });
+
+        if (!data) {
+            console.log("Achievement not found for _id:", _id);
+            return res.status(404).send("Achievement not found");
+        }
+
+        console.log("Achievement data:", data);
+        return res.status(200).send(data);
+    } catch (err) {
+        console.error("Error retrieving achievement:", err);
+        next(err.message);
+    }
+};
+
 exports.postAchievement = async (req, res, next) => {
     const data = {
         ...req.body,
         title: req.body.title,
         description: req.body.description,
-        imageUrl1: req.body.imageUrl1.length === 0 ? "" : req.body.imageUrl1,
-        imageUrl2: req.body.imageUrl2.length === 0 ? "" : req.body.imageUrl2
+        imageUrl: req.body.imageUrl.length === 0 ? "" : req.body.imageUrl,
     }
     try {
         const existing = await achievement.findOne({ title: req.body.title })

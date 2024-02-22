@@ -18,7 +18,9 @@ router.patch('/society', authorization('admin'), adminController.updateSociety)
 
 router.delete('/society/:id', authorization('admin'), adminController.deleteSociety)
 
-router.get('/achievement', authorization('member'), adminController.getAchievement)
+router.get('/achievements', authorization('member'), adminController.getAchievements)
+
+router.get('/achievement/:id', authorization('admin'), adminController.getAchievement)
 
 router.post('/achievement', authorization('admin'), adminController.postAchievement)
 
