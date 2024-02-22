@@ -17,10 +17,12 @@ exports.login = async (req, res, next) => {
                     httpOnly: true,
                     secure: true,
                     maxAge: 2*24*60*60*1000,
+                    sameSite: 'none'
                 }).cookie('user', user.role , {
                     httpOnly: true,
                     secure: true,
                     maxAge: 2*24*60*60*1000,
+                    sameSite: 'none'
                 }).json({msg:'Logged in successfully'})
             }
         }
