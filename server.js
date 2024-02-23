@@ -12,9 +12,9 @@ dotenv.config()
 const app = express()
 
 app.use(cors({
-    origin: process.env.Frontend,
+    origin: ['http://localhost:3000', 'https://akgu-frontend.vercel.app','https://akgu-dashboard.vercel.app'],
     credentials: true
-}));
+}))
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieparser())
 app.use(express.json())
