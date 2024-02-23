@@ -13,16 +13,17 @@ exports.login = async (req, res, next) => {
                     username: user.username,
                     role: user.role
                 }, process.env.JWT_SECRET, { expiresIn: '2d' })
+
                 return res.status(200).cookie('auth', token, {
-                    httpOnly: true,
+                    httpOnly: false,
                     secure: true,
-                    maxAge: 2*24*60*60*1000,
-                    sameSite: 'none'
+                    sameSite: 'None',
+                    expires: new Date(Date.now() + 25892000),
                 }).cookie('user', user.role , {
-                    httpOnly: true,
+                    httpOnly: false,
                     secure: true,
-                    maxAge: 2*24*60*60*1000,
-                    sameSite: 'none'
+                    sameSite: 'None',
+                    expires: new Date(Date.now() + 25892000),
                 }).json({msg:'Logged in successfully'})
             }
         }
