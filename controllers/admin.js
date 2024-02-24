@@ -5,7 +5,7 @@ const cloudinary = require("../config/cloudinary")
 const upload = require("../middlewares/multer")
 const mongoose = require('mongoose');
 
-exports.getFaculty = async (req, res, next) => {
+exports.getFaculties = async (req, res, next) => {
     try {
         const data = await faculty.find({})
         return res.status(200).send(data)
@@ -13,6 +13,25 @@ exports.getFaculty = async (req, res, next) => {
         next(err.message)
     }
 }
+exports.getFaculty = async (req, res, next) => {
+    const _id = req.params.id;
+
+    try {
+        const objectId = mongoose.Types.ObjectId(_id);
+        const data = await faculty.findOne({ _id: objectId });
+
+        if (!data) {
+            console.log("Faculty not found for _id:", _id);
+            return res.status(404).send("Faculty not found");
+        }
+
+        console.log("Faculty data:", data);
+        return res.status(200).send(data);
+    } catch (err) {
+        console.error("Error retrieving Faculty info:", err);
+        next(err.message);
+    }
+};
 exports.postFaculty = async (req, res, next) => {
     const data = {
         ...req.body,
@@ -65,7 +84,7 @@ exports.deleteFaculty = async (req, res, next) => {
     }
 }
 
-exports.getSociety = async (req, res, next) => {
+exports.getSocieties = async (req, res, next) => {
     try {
         const data = await society.find({})
         return res.status(200).send(data)
@@ -74,7 +93,25 @@ exports.getSociety = async (req, res, next) => {
     }
 }
 
+exports.getSociety = async (req, res, next) => {
+    const _id = req.params.id;
 
+    try {
+        const objectId = mongoose.Types.ObjectId(_id);
+        const data = await society.findOne({ _id: objectId });
+
+        if (!data) {
+            console.log("Society not found for _id:", _id);
+            return res.status(404).send("Society not found");
+        }
+
+        console.log("Society data:", data);
+        return res.status(200).send(data);
+    } catch (err) {
+        console.error("Error retrieving Society info:", err);
+        next(err.message);
+    }
+};
 
 exports.postSociety = async (req, res, next) => {
 

@@ -2,7 +2,9 @@ const router = require('express').Router()
 const adminController = require('../controllers/admin')
 const authorization = require('../middlewares/authorization')
 
-router.get('/faculty', authorization('member'), adminController.getFaculty)
+router.get('/faculty', authorization('member'), adminController.getFaculties)
+
+router.get('/faculty/:id', authorization('admin'), adminController.getFaculty)
 
 router.post('/faculty', authorization('admin'), adminController.postFaculty)
 
@@ -10,7 +12,9 @@ router.patch('/faculty', authorization('admin'), adminController.updateFaculty)
 
 router.delete('/faculty/:id', authorization('admin'), adminController.deleteFaculty)
 
-router.get('/society', authorization('member'), adminController.getSociety)
+router.get('/society', authorization('member'), adminController.getSocieties)
+
+router.get('/society/:id', authorization('admin'), adminController.getSociety)
 
 router.post('/society', authorization('admin'), adminController.postSociety)
 
