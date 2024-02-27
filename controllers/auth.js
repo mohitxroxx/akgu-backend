@@ -16,13 +16,13 @@ exports.login = async (req, res, next) => {
 
                 return res.status(200).cookie('auth', token, {
                     httpOnly: true,
-                    maxAge: 259200000
+                    maxAge: 259200000,
                     // secure: true,
                     // sameSite: 'None',
                     // expires: new Date(Date.now() + 25892000),
                 }).cookie('user', user.role , {
                     httpOnly: true,
-                    maxAge: 259200000
+                    maxAge: 259200000,
                     // secure: true,
                     // sameSite: 'None',
                     // expires: new Date(Date.now() + 25892000),
@@ -36,9 +36,17 @@ exports.login = async (req, res, next) => {
 }
 
 exports.logout = (req, res, next) => {
-    res.clearCookie('auth')
-    res.clearCookie('user')
-    res.status(200).send("User Logged out and session ended")
+    try {
+        return res.cookie('auth', '', {
+            httpOnly: true,
+            maxAge: 0
+        }).cookie('user', '', {
+            httpOnly: true,
+            maxAge: 0
+        }).status(200).json({msg:"Successfully logged out!"})
+    } catch (error) {
+        return res.status(500).send('Error occured!')
+    }
 }
 
 exports.signup = async (req, res, next) => {
