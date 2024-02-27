@@ -3,7 +3,7 @@ const roles = ['member','admin']
 
 const authorization = (role) => {
     return (req, res, next) => {
-        console.log(req.cookies.user)
+        // console.log(req.cookies.user)
         if(!req.cookies.user)
         return res.status(403).json({
             message: 'User isnt logged in'

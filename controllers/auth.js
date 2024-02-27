@@ -15,14 +15,14 @@ exports.login = async (req, res, next) => {
                 }, process.env.JWT_SECRET, { expiresIn: '2d' })
 
                 return res.status(200).cookie('auth', token, {
-                    httpOnly: false,
-                    secure: true,
-                    sameSite: 'None',
+                    httpOnly: true,
+                    // secure: true,
+                    // sameSite: 'None',
                     expires: new Date(Date.now() + 25892000),
                 }).cookie('user', user.role , {
-                    httpOnly: false,
-                    secure: true,
-                    sameSite: 'None',
+                    httpOnly: true,
+                    // secure: true,
+                    // sameSite: 'None',
                     expires: new Date(Date.now() + 25892000),
                 }).json({msg:'Logged in successfully'})
             }
