@@ -17,14 +17,14 @@ exports.login = async (req, res, next) => {
                 return res.cookie('auth', token, {
                     httpOnly: true,
                     maxAge: 259200000,
-                    // secure: true,
-                    // sameSite: 'None',
+                    secure: true,
+                    sameSite: 'None',
                     // expires: new Date(Date.now() + 25892000),
                 }).cookie('user', user.role , {
                     httpOnly: true,
                     maxAge: 259200000,
-                    // secure: true,
-                    // sameSite: 'None',
+                    secure: true,
+                    sameSite: 'None',
                     // expires: new Date(Date.now() + 25892000),
                 }).status(200).json({msg:'Logged in successfully'})
             }
