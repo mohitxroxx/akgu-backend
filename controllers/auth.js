@@ -14,7 +14,7 @@ exports.login = async (req, res, next) => {
                     role: user.role
                 }, process.env.JWT_SECRET, { expiresIn: '2d' })
 
-                return res.status(200).cookie('auth', token, {
+                return res.cookie('auth', token, {
                     httpOnly: true,
                     maxAge: 259200000,
                     // secure: true,
@@ -26,7 +26,7 @@ exports.login = async (req, res, next) => {
                     // secure: true,
                     // sameSite: 'None',
                     // expires: new Date(Date.now() + 25892000),
-                }).json({msg:'Logged in successfully'})
+                }).status(200).json({msg:'Logged in successfully'})
             }
         }
         return res.status(500).send('wrong credentials')
